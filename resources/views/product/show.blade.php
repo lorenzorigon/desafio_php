@@ -11,8 +11,15 @@
                         <p style="font-size: 22px">R$ {{$product->price}}</p>
                     </div>
                     <div class="card-footer text-right">
-                        <a href="#" class="btn btn-success">Editar</a>
-                        <a href="#" class="btn btn-danger">Excluir</a>
+                        <div class="row justify-content-end mr-4">
+                            <a href="{{route('product.edit', ['product' => $product->id])}}"
+                               class="btn btn-success ml-1">Editar</a>
+                            <form action="{{route('product.destroy', ['product' => $product->id])}}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger ml-1">Excluir</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
