@@ -15,7 +15,7 @@ class ProductController extends Controller
 
     public function show($id)
     {
-        $product = Product::where('id', $id);
+        $product = Product::where('id', $id)->first();
         return view('product.show', ['product' => $product]);
     }
 
@@ -36,7 +36,7 @@ class ProductController extends Controller
 
     public function edit($id)
     {
-        $product = Product::where('id', $id);
+        $product = Product::where('id', $id)->first();
         return view('product.create_edit', ['product' => $product]);
     }
 
