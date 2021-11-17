@@ -45,7 +45,7 @@ class ProductController extends Controller
         $request->validate(Product::rules(), Product::feedback());
 
         $product = Product::where('id', $id);
-        $product->save($request->only('name', 'price', 'description'));
+        $product->update($request->only('name', 'price', 'description'));
 
         return redirect()->back()->with('message', 'Produto editado com sucesso!');
     }
