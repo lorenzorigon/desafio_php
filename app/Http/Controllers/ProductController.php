@@ -13,12 +13,6 @@ class ProductController extends Controller
         return view('product.index', ['products' => $products]);
     }
 
-    public function show($id)
-    {
-        $product = Product::where('id', $id)->first();
-        return view('product.show', ['product' => $product]);
-    }
-
     public function create()
     {
         return view('product.create_edit');
@@ -34,9 +28,15 @@ class ProductController extends Controller
         return redirect()->back()->with('message', 'Produto cadastrado com sucesso!');
     }
 
+    public function show($id)
+    {
+        $product = Product::findOrFail($id)->first();
+        return view('product.show', ['product' => $product]);
+    }
+
     public function edit($id)
     {
-        $product = Product::where('id', $id)->first();
+        $product = Product::findOrFail($id)->first();
         return view('product.create_edit', ['product' => $product]);
     }
 
