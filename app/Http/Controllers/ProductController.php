@@ -15,7 +15,7 @@ class ProductController extends Controller
 
     public function show($id)
     {
-        $product = Product::query()->find('id', $id);
+        $product = Product::where('id', $id);
         return view('product.show', ['product' => $product]);
     }
 
@@ -36,7 +36,7 @@ class ProductController extends Controller
 
     public function edit($id)
     {
-        $product = Product::query()->find('id', $id);
+        $product = Product::where('id', $id);
         return view('product.create_edit', ['product' => $product]);
     }
 
@@ -44,7 +44,7 @@ class ProductController extends Controller
     {
         $request->validate(Product::rules(), Product::feedback());
 
-        $product = Product::query()->find('id', $id);
+        $product = Product::where('id', $id);
         $product->save($request->only('name', 'price', 'description'));
 
         return redirect()->back()->with('message', 'Produto editado com sucesso!');
