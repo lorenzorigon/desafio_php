@@ -32,7 +32,8 @@
                                         <div class="row p-1">
                                             <a href="{{route('sale.show', ['sale' => $sale->id])}}"
                                                class="btn btn-primary ">Visualizar</a>
-                                            <form action="{{route('sale.destroy', ['sale' => $sale->id])}}" method="post">
+                                            <form action="{{route('sale.destroy', ['sale' => $sale->id])}}"
+                                                  method="post">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger ml-1">Excluir</button>
@@ -43,6 +44,10 @@
                             @endforeach
                             </tbody>
                         </table>
+                            <form action="{{route('sale.store')}}" method="post">
+                                @csrf
+                                    <button type="submit" class="btn btn-lg btn-success">Nova Venda</button>
+                            </form>
                     </div>
                 </div>
             </div>

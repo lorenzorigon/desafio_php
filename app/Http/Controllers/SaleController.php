@@ -22,15 +22,19 @@ class SaleController extends Controller
         $sale->user_id = auth()->user()->id;
         $sale->save();
 
-        return redirect()->route('sale.index');
+
+        return redirect()->route('sale.show', ['sale' => $sale->id]);
     }
 
 
     public function show($id)
     {
-        $sale = Sale::query()->where('id', $id)->with('products')->first();
+        $sale = Sale::query()->where('id', $id)->first();
+        $saleProducts = $sale->products;
+
         $products = Product::all();
-        return view ('sale.show', ['sale' => $sale, 'products' => $products]);
+
+        return view ('sale.show', ['sale' => $sale, 'products' => $products, 'saleProducts' => $saleProducts]);
     }
 
 

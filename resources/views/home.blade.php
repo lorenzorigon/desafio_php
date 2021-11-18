@@ -21,7 +21,7 @@
                             </div>
                         </form>
                         <div class="row m-1">
-                            <a href="{{route('product.create')}}" class="col btn btn-primary">Visualizar Vendas</a>
+                            <a href="{{route('sale.index')}}" class="col btn btn-primary">Visualizar Vendas</a>
                         </div>
                     </div>
                 </div>

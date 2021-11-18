@@ -16,7 +16,8 @@
                                     <select name="product_id" class="form-control">
                                         <option selected>Selecione um produto...</option>
                                         @foreach($products as $product)
-                                            <option value="{{$product->id}}" name="product_id">{{$product->name}}</option>
+                                            <option value="{{$product->id}}"
+                                                    name="product_id">{{$product->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -28,9 +29,12 @@
                             <button type="submit" class="btn btn-success float-right">Adicionar</button>
                         </form>
                     </div>
+                    @if($errors->any())
+                    <p class="alert-danger m-2">Preencha os campos</p>
+                    @endif
                 </div>
                 @if(session('message'))
-                <div class="mt-2 mb-2"><p class="alert alert-success">{{session('message')}}</p></div>
+                    <div class="mt-2 mb-2"><p class="alert alert-success">{{session('message')}}</p></div>
                 @endif
                 <div class="card text-center">
                     <div class="card-header">Venda #{{$sale->id}}</div>
@@ -45,17 +49,20 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <th scope="row"></th>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
+                            @foreach($saleProducts as $product)
+                                <tr>
+                                    <th scope="row"></th>
+                                    <td>{{$product->name}}</td>
+                                    <td>{{$product->pivot->price}}</td>
+                                    <td>{{$product->pivot->amount}}</td>
+                                </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
-                    <div class="card-footer text-right">
-                        <a href="" class="btn btn-lg btn-primary">Gerar PDF</a>
+                    <div class="card-footer">
+                        <h2>Total R$ {{$sale->total_price}}</h2>
+                        <a href="" class="btn btn-lg btn-primary float-right">Gerar PDF</a>
                     </div>
                 </div>
             </div>
