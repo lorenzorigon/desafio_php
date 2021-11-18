@@ -15,31 +15,17 @@ class SaleController extends Controller
     }
 
 
-    public function create()
+    public function store()
     {
-        //
-    }
+        $sale = new Sale();
+        $sale->user_id = auth()->user()->id;
+        $sale->save();
 
-
-    public function store(Request $request)
-    {
-        //
+        return redirect()->route('sale.index');
     }
 
 
     public function show($id)
-    {
-        //
-    }
-
-
-    public function edit($id)
-    {
-        //
-    }
-
-
-    public function update(Request $request, $id)
     {
         //
     }
