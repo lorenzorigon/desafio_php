@@ -33,3 +33,4 @@ Route::resource('sale', SaleController::class)->middleware('auth');
 
 //ROTAS PRODUCT-SALE
 Route::post('/', [ProductSaleController::class, 'store'])->name('product-sale.store')->middleware('auth');
+Route::get('/export', [ProductSaleController::class, 'export'])->prefix('pdf')->middleware('auth')->name('sale.export');

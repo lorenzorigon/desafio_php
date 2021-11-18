@@ -62,7 +62,7 @@
                     </div>
                     <div class="card-footer">
                         <h2>Total R$ {{$sale->total_price}}</h2>
-                        <a href="" class="btn btn-lg btn-primary float-right">Gerar PDF</a>
+                        <a href="{{route('sale.export')}}" class="btn btn-lg btn-primary float-right">Gerar PDF</a>
                     </div>
                 </div>
             </div>

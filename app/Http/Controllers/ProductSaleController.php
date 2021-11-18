@@ -5,10 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Sale;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\PDF;
+use Illuminate\Support\Facades\App;
 
 class ProductSaleController extends Controller
 {
-    public function store(Request $request){
+    public function store(Request $request)
+    {
 
         $request->validate([
             'product_id' => 'required',
@@ -32,7 +35,8 @@ class ProductSaleController extends Controller
         return redirect()->back()->with('message', 'Produto adicionado ao pedido');
     }
 
-    private function updateTotalPrice($request, $product){
+    private function updateTotalPrice($request, $product)
+    {
         $total_price = $request->input('amount') * $product->price;
 
         $sale = Sale::where('id', $request->sale_id)->first();
@@ -40,4 +44,12 @@ class ProductSaleController extends Controller
 
         $sale->save();
     }
+
+    public function export()
+    {
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadView('sale.pdf',[]);
+        return $pdf->download('VendaX.pdf');
+    }
+
 }
