@@ -31,7 +31,8 @@
                                                class="btn btn-primary ">Visualizar</a>
                                             <a href="{{route('product.edit', ['product' => $product->id])}}"
                                                class="btn btn-success ml-1">Editar</a>
-                                            <form action="{{route('product.destroy', ['product' => $product->id])}}" method="post">
+                                            <form action="{{route('product.destroy', ['product' => $product->id])}}"
+                                                  method="post">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger ml-1">Excluir</button>
@@ -42,6 +43,7 @@
                             @endforeach
                             </tbody>
                         </table>
+                        <a href="{{route('product.create')}}" class="btn btn-lg btn-success mt-4">Cadastrar Produto</a>
                     </div>
                 </div>
             </div>

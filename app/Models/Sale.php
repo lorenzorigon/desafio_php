@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Http\Controllers\ProductController;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -17,6 +16,6 @@ class Sale extends Model
     }
 
     public function products(){
-        return $this->belongsToMany(ProductController::class)->withPivot(['amount', 'price']);
+        return $this->belongsToMany(Product::class)->withPivot(['amount', 'price']);
     }
 }

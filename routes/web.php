@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductSaleController;
 use App\Http\Controllers\SaleController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -29,3 +30,6 @@ Route::resource('product', ProductController::class);
 
 //ROTAS VENDA
 Route::resource('sale', SaleController::class);
+
+//ROTAS PRODUCT-SALE
+Route::post('/', [ProductSaleController::class, 'store'])->name('product-sale.store');

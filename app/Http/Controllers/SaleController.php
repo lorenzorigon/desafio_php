@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use App\Models\Sale;
 use Illuminate\Http\Request;
 
@@ -27,7 +28,9 @@ class SaleController extends Controller
 
     public function show($id)
     {
-        //
+        $sale = Sale::query()->where('id', $id)->with('products')->first();
+        $products = Product::all();
+        return view ('sale.show', ['sale' => $sale, 'products' => $products]);
     }
 
 
