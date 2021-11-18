@@ -18,18 +18,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('/home');
+})->middleware('auth');
 
 Auth::routes(['verify' => true]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
 
 //ROTAS PRODUTO
-Route::resource('product', ProductController::class);
+Route::resource('product', ProductController::class)->middleware('auth');
 
 //ROTAS VENDA
-Route::resource('sale', SaleController::class);
+Route::resource('sale', SaleController::class)->middleware('auth');
 
 //ROTAS PRODUCT-SALE
-Route::post('/', [ProductSaleController::class, 'store'])->name('product-sale.store');
+Route::post('/', [ProductSaleController::class, 'store'])->name('product-sale.store')->middleware('auth');
