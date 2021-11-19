@@ -30,11 +30,10 @@ class SaleController extends Controller
     public function show($id)
     {
         $sale = Sale::query()->where('id', $id)->first();
-        $saleProducts = $sale->products;
 
         $products = Product::all();
 
-        return view ('sale.show', ['sale' => $sale, 'products' => $products, 'saleProducts' => $saleProducts]);
+        return view ('sale.show', ['sale' => $sale, 'products' => $products]);
     }
 
 

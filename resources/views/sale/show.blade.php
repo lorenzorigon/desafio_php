@@ -7,7 +7,7 @@
                 <div class="mt-4 mb-4 text-center">
                     <h2>Adicionar Produto</h2>
                     <div class="row justify-content-center">
-                        <form action="{{route('product-sale.store')}}" method="post">
+                        <form action="{{route('product-sale.store', ['sale' => $sale->id])}}" method="post">
                             @csrf
                             <input type="hidden" name="sale_id" value="{{$sale->id}}">
                             <div class="form-row">
@@ -49,7 +49,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($saleProducts as $product)
+                            @foreach($sale->products as $product)
                                 <tr>
                                     <th scope="row"></th>
                                     <td>{{$product->name}}</td>
@@ -62,7 +62,7 @@
                     </div>
                     <div class="card-footer">
                         <h2>Total R$ {{$sale->total_price}}</h2>
-                        <a href="{{route('sale.export')}}" class="btn btn-lg btn-primary float-right">Gerar PDF</a>
+                        <a href="{{route('export', ['sale' => $sale->id])}}" class="btn btn-lg btn-primary float-right">Gerar PDF</a>
                     </div>
                 </div>
             </div>
